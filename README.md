@@ -1,6 +1,8 @@
 # musicjay
 
 > musicjay
+> 
+![image](https://user-images.githubusercontent.com/33400938/170302142-7a22dd95-6b5d-418b-aa0b-fb84338fd285.png)
 
 #### Build Setup
 
