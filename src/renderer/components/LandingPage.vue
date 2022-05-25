@@ -2,18 +2,16 @@
 	<div id="wrapper">
 		<div class="top">
 			<div class="head" style="width: 50%;" @click="showAuthor">
-				<a-popover v-model="Author" title="二月丶提示 : 听就完了,别乱点!!!" trigger="click">
-					<a slot="content" @click="hide">关闭</a>
-				</a-popover>
 				<h2>周杰伦专属</h2>
 			</div>
 			<div class="musicDwonList" style="width: 40%;margin-right: 100px;">
 				<!-- <a-button type="primary" icon="appstore">二月</a-button> -->
 				<span>{{ FormatTime(nowTime) }}</span>
 			</div>
-			<a-icon type="minus-circle" style="width: 5%;margin-left: 20px;" @click="minWin"/>
+			<a-icon type="minus-circle" style="width: 5%;margin-left: 20px;" @click="minWin" />
 			<a-icon type="close-circle" style="width: 10%;" @click="closeWin" />
 		</div>
+		<div class="empty-content"></div>
 		<div class="listData">
 			<a-table :columns="columns" :data-source="searchList">
 				<img slot="pic" slot-scope="pic" :src="pic" style="width: 100px;" />
@@ -39,7 +37,9 @@
 	// import Audio from '../components/audio.vue'
 	import SystemInformation from './LandingPage/SystemInformation'
 	import qs from "qs"
-	import { ipcRenderer } from 'electron'
+	import {
+		ipcRenderer
+	} from 'electron'
 
 	const columns = [{
 			title: '歌曲名称',
@@ -98,8 +98,7 @@
 				globalName: '',
 				timer: undefined,
 				nowTime: new Date(),
-				latedata: "2020-1-9",
-				Author: false
+				latedata: "2020-1-9"
 			}
 		},
 		methods: {
@@ -110,10 +109,14 @@
 				ipcRenderer.send('min')
 			},
 			showAuthor: function() {
-				this.Author = true
-			},
-			hide: function() {
-				this.Author = false
+				const h = this.$createElement;
+				this.$info({
+					title: '二月の提示',
+					content: h('div', {}, [
+						h('p', '好好听歌，别乱点！！！'),
+					]),
+					onOk() {},
+				});
 			},
 			showDrawer: function(mp3, mname) {
 				this.musicSrc = mp3
@@ -211,14 +214,19 @@
 		padding: 20px 20px;
 	}
 
-	.search {
-		width: 70%;
+	.empty-content {
+		position: relative;
+		display: block;
+		height: 40px;
+		margin-top: 20px;
 	}
 
 	.top {
+		position: fixed;
 		display: flex;
+		z-index: 9999;
 		width: 100%;
-		margin-bottom: 20px;
+		margin-bottom: 200px;
 		justify-content: space-between;
 	}
 
@@ -229,6 +237,7 @@
 	div /deep/ button {
 		pointer-events: auto;
 	}
+
 	span {
 		-webkit-app-region: drag;
 	}
