@@ -1,9 +1,10 @@
 # musicjay
 
 > musicjay
+> 
+![image](https://user-images.githubusercontent.com/33400938/170302142-7a22dd95-6b5d-418b-aa0b-fb84338fd285.png)
 
 #### Build Setup
-![image](https://user-images.githubusercontent.com/33400938/170301939-d0f0478c-6ccb-4aaa-ae05-a074d008ef9d.png)
 
 ``` bash
 # install dependencies
